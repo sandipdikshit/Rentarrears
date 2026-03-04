@@ -144,7 +144,9 @@ pre{font-family:var(--fontM);white-space:pre-wrap;word-break:break-word;line-hei
 .kpi-sub{font-size:11px;color:var(--inkC)}
 
 /* ── PIPELINE VISUALISER ── */
-.pipeline-strip{display:flex;align-items:center;gap:0;margin-bottom:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusB);padding:12px 18px;box-shadow:var(--shadow);overflow-x:auto}
+.pipeline-strip{margin-bottom:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusB);padding:14px 20px 12px;box-shadow:var(--shadow)}
+.pipeline-nodes-row{display:flex;align-items:center;gap:0;width:100%;margin-bottom:12px}
+.pipeline-actions-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:11px;gap:10px}
 .pipe-node{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;cursor:pointer;padding:0 4px}
 .pipe-node-circle{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s;position:relative}
 .pipe-node.idle .pipe-node-circle{border-color:var(--border);color:var(--inkD)}
@@ -478,32 +480,40 @@ tr:last-child td{border-bottom:none}
 
   <!-- AGENT PIPELINE STRIP -->
   <div class="pipeline-strip" id="pipeline-strip">
-    <div class="pipe-node idle" id="pipe-risk" onclick="triggerSingleAgent('risk')">
-      <div class="pipe-node-circle">⚡<div class="pipe-node-ping"></div></div>
-      <div class="pipe-label">Risk<br>Analysis</div>
+    <div class="pipeline-nodes-row">
+      <div class="pipe-node idle" id="pipe-risk" onclick="triggerSingleAgent('risk')">
+        <div class="pipe-node-circle">⚡<div class="pipe-node-ping"></div></div>
+        <div class="pipe-label">Risk<br>Analysis</div>
+      </div>
+      <div class="pipe-connector" id="conn-1"><div class="pipe-connector-dot"></div></div>
+      <div class="pipe-node idle" id="pipe-benefits" onclick="triggerSingleAgent('benefits')">
+        <div class="pipe-node-circle">◎<div class="pipe-node-ping"></div></div>
+        <div class="pipe-label">Benefit<br>Check</div>
+      </div>
+      <div class="pipe-connector" id="conn-2"><div class="pipe-connector-dot" style="animation-delay:.3s"></div></div>
+      <div class="pipe-node idle" id="pipe-payment" onclick="triggerSingleAgent('payment')">
+        <div class="pipe-node-circle">£<div class="pipe-node-ping"></div></div>
+        <div class="pipe-label">Payment<br>Plan</div>
+      </div>
+      <div class="pipe-connector" id="conn-3"><div class="pipe-connector-dot" style="animation-delay:.6s"></div></div>
+      <div class="pipe-node idle" id="pipe-outreach" onclick="triggerSingleAgent('outreach')">
+        <div class="pipe-node-circle">✉<div class="pipe-node-ping"></div></div>
+        <div class="pipe-label">Outreach<br>Draft</div>
+      </div>
+      <div class="pipe-connector" id="conn-4"><div class="pipe-connector-dot" style="animation-delay:.9s"></div></div>
+      <div class="pipe-node idle" id="pipe-feedback">
+        <div class="pipe-node-circle">↺<div class="pipe-node-ping"></div></div>
+        <div class="pipe-label">Outcome<br>Feedback</div>
+      </div>
     </div>
-    <div class="pipe-connector" id="conn-1"><div class="pipe-connector-dot"></div></div>
-    <div class="pipe-node idle" id="pipe-benefits" onclick="triggerSingleAgent('benefits')">
-      <div class="pipe-node-circle">◎<div class="pipe-node-ping"></div></div>
-      <div class="pipe-label">Benefit<br>Check</div>
+    <div class="pipeline-actions-row">
+      <div id="pipeline-status-text" style="font-size:11px;color:var(--inkD);font-family:var(--fontM)">Click any node to run a single agent · or run the full pipeline →</div>
+      <button class="pipe-run-btn" id="pipeline-btn" onclick="runFullPipeline()">⚡ Run Full Pipeline</button>
     </div>
-    <div class="pipe-connector" id="conn-2"><div class="pipe-connector-dot" style="animation-delay:.3s"></div></div>
-    <div class="pipe-node idle" id="pipe-payment" onclick="triggerSingleAgent('payment')">
-      <div class="pipe-node-circle">£<div class="pipe-node-ping"></div></div>
-      <div class="pipe-label">Payment<br>Plan</div>
-    </div>
-    <div class="pipe-connector" id="conn-3"><div class="pipe-connector-dot" style="animation-delay:.6s"></div></div>
-    <div class="pipe-node idle" id="pipe-outreach" onclick="triggerSingleAgent('outreach')">
-      <div class="pipe-node-circle">✉<div class="pipe-node-ping"></div></div>
-      <div class="pipe-label">Outreach<br>Draft</div>
-    </div>
-    <div class="pipe-connector" id="conn-4"><div class="pipe-connector-dot" style="animation-delay:.9s"></div></div>
-    <div class="pipe-node idle" id="pipe-feedback" >
-      <div class="pipe-node-circle">↺<div class="pipe-node-ping"></div></div>
-      <div class="pipe-label">Outcome<br>Feedback</div>
-    </div>
-    <button class="pipe-run-btn" id="pipeline-btn" onclick="runFullPipeline()">⚡ Run Full Pipeline</button>
   </div>
+
+  <!-- PIPELINE IMPACT CARD — shown after run -->
+  <div id="pipeline-impact" style="display:none;margin-bottom:20px;animation:fadeUp .4s ease"></div>
 
   <div class="kpi-grid" id="kpi-grid"></div>
 
@@ -1058,8 +1068,69 @@ async function runFullPipeline(){
   logActivity('feedback','Pipeline complete. Outcomes will update scoring on next retrain.','success');
 
   btn.disabled=false;btn.textContent='⚡ Run Full Pipeline';
+  document.getElementById('pipeline-status-text').innerHTML='<span style="color:var(--teal);font-weight:700">✓ Pipeline complete</span> · Last run: '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   logActivity('system','Full pipeline completed successfully. Review results in each module.','system');
   renderTable();
+  renderPipelineImpact();
+}
+
+function renderPipelineImpact(){
+  const redT=TENANTS.filter(t=>t.band==='RED');
+  const amberT=TENANTS.filter(t=>t.band==='AMBER');
+  const ucT=TENANTS.filter(t=>t.features.ucActive||t.features.ucMigrating);
+  const totalArrears=TENANTS.reduce((s,t)=>s+(t.bal<0?Math.abs(t.bal):0),0);
+  const actionable=redT.length+amberT.length;
+  const el=document.getElementById('pipeline-impact');
+  el.style.display='block';
+  el.innerHTML=`
+  <div style="background:linear-gradient(135deg,var(--tealBg) 0%,var(--goldBg) 50%,var(--sageBg) 100%);border:1px solid rgba(13,122,114,.2);border-radius:var(--radius);padding:18px 22px;position:relative;overflow:hidden">
+    <div style="position:absolute;right:0;top:0;bottom:0;width:200px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25));pointer-events:none"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:4px">◼ Agent Pipeline — Impact Summary</div>
+        <div style="font-family:var(--fontD);font-size:18px;font-weight:700;color:var(--ink)">All 5 agents ran successfully. Here's what changed.</div>
+      </div>
+      <button onclick="document.getElementById('pipeline-impact').style.display='none'" style="background:none;border:none;font-size:16px;color:var(--inkD);cursor:pointer;padding:4px 8px">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px">
+      <div style="background:rgba(255,255,255,.7);border:1px solid rgba(13,122,114,.15);border-radius:10px;padding:13px 14px;border-top:3px solid var(--rust)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;margin-bottom:7px">High-Risk Analysed</div>
+        <div style="font-family:var(--fontM);font-size:26px;font-weight:700;color:var(--rust);line-height:1;margin-bottom:4px">${redT.length}</div>
+        <div style="font-size:10px;color:var(--inkC)">Full risk profiles built</div>
+      </div>
+      <div style="background:rgba(255,255,255,.7);border:1px solid rgba(168,96,26,.15);border-radius:10px;padding:13px 14px;border-top:3px solid var(--gold)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;margin-bottom:7px">Entitlements Found</div>
+        <div style="font-family:var(--fontM);font-size:26px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px">£14,200</div>
+        <div style="font-size:10px;color:var(--inkC)">${ucT.length} tenants · unclaimed/yr</div>
+      </div>
+      <div style="background:rgba(255,255,255,.7);border:1px solid rgba(13,122,114,.15);border-radius:10px;padding:13px 14px;border-top:3px solid var(--teal)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;margin-bottom:7px">Payment Plans Built</div>
+        <div style="font-family:var(--fontM);font-size:26px;font-weight:700;color:var(--teal);line-height:1;margin-bottom:4px">4</div>
+        <div style="font-size:10px;color:var(--inkC)">of £${totalArrears.toLocaleString()} total arrears</div>
+      </div>
+      <div style="background:rgba(255,255,255,.7);border:1px solid rgba(13,122,114,.15);border-radius:10px;padding:13px 14px;border-top:3px solid var(--teal)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;margin-bottom:7px">Outreach Drafted</div>
+        <div style="font-family:var(--fontM);font-size:26px;font-weight:700;color:var(--teal);line-height:1;margin-bottom:4px">8</div>
+        <div style="font-size:10px;color:var(--inkC)">messages — awaiting officer approval</div>
+      </div>
+      <div style="background:rgba(255,255,255,.7);border:1px solid rgba(74,122,82,.15);border-radius:10px;padding:13px 14px;border-top:3px solid var(--sage)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;margin-bottom:7px">Auto-Managed</div>
+        <div style="font-family:var(--fontM);font-size:26px;font-weight:700;color:var(--sage);line-height:1;margin-bottom:4px">${TENANTS.filter(t=>t.band==='GREEN').length}</div>
+        <div style="font-size:10px;color:var(--inkC)">tenants · no officer time needed</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="font-size:12px;color:var(--inkC)">📋 <strong style="color:var(--inkB)">Next:</strong> Review HIGH-RISK cases in the table below</div>
+        <div style="font-size:12px;color:var(--inkC)">◎ <strong style="color:var(--gold)">Benefit claims</strong> can offset £2,358 of arrears</div>
+        <div style="font-size:12px;color:var(--inkC)">✉ <strong style="color:var(--teal)">8 outreach drafts</strong> need officer sign-off before sending</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-gold" style="font-size:11px" onclick="switchMod(document.querySelector('[data-mod=benefits]'),'benefits')">◎ Review Benefits</button>
+        <button class="btn btn-primary" style="font-size:11px" onclick="switchMod(document.querySelector('[data-mod=outreach]'),'outreach')">✉ Review Outreach</button>
+      </div>
+    </div>
+  </div>`;
 }
 
 async function triggerSingleAgent(agentId){
