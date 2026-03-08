@@ -353,6 +353,68 @@ tr:last-child td{border-bottom:none}
 /* ── FOOTER ── */
 #footer{background:rgba(254,252,248,.88);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:9px 26px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;font-size:10px;color:var(--inkD)}
 .footer-dot{width:4px;height:4px;border-radius:50%;background:var(--teal);opacity:.5}
+
+/* ── PRIORITY×RISK MATRIX ── */
+.matrix-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:6px;margin-top:10px}
+.matrix-cell{border-radius:8px;padding:10px 12px;min-height:70px;position:relative;border:1px solid transparent;cursor:pointer;transition:all .15s}
+.matrix-cell:hover{transform:translateY(-1px);box-shadow:var(--shadowB)}
+.matrix-cell-count{font-family:var(--fontM);font-size:22px;font-weight:700;line-height:1;margin-bottom:3px}
+.matrix-cell-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.7}
+.mc-hh{background:var(--rustBg);border-color:var(--rustXL)}.mc-hh .matrix-cell-count{color:var(--rust)}
+.mc-hm{background:#FEF3EC;border-color:rgba(184,58,32,.15)}.mc-hm .matrix-cell-count{color:var(--rustL)}
+.mc-hl{background:var(--goldBg);border-color:rgba(168,96,26,.2)}.mc-hl .matrix-cell-count{color:var(--gold)}
+.mc-mh{background:#FEF3EC;border-color:rgba(184,58,32,.12)}.mc-mh .matrix-cell-count{color:var(--rustL)}
+.mc-mm{background:var(--goldBg);border-color:rgba(168,96,26,.15)}.mc-mm .matrix-cell-count{color:var(--gold)}
+.mc-ml{background:var(--tealBg);border-color:rgba(13,122,114,.15)}.mc-ml .matrix-cell-count{color:var(--tealL)}
+.mc-lh{background:var(--goldBg);border-color:rgba(168,96,26,.18)}.mc-lh .matrix-cell-count{color:var(--gold)}
+.mc-lm{background:var(--tealBg);border-color:rgba(13,122,114,.12)}.mc-lm .matrix-cell-count{color:var(--tealL)}
+.mc-ll{background:var(--sageBg);border-color:var(--sageXL)}.mc-ll .matrix-cell-count{color:var(--sage)}
+.quick-win-badge{position:absolute;top:6px;right:6px;font-size:8px;font-weight:700;background:var(--gold);color:#fff;padding:1px 5px;border-radius:3px;letter-spacing:.5px}
+.matrix-axis-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--inkD);text-align:center}
+
+/* ── COMPLETION RING ── */
+.completion-ring-wrap{display:flex;align-items:center;gap:14px}
+.completion-ring-text{font-family:var(--fontM);font-size:28px;font-weight:700;color:var(--teal);line-height:1}
+.completion-ring-sub{font-size:10px;color:var(--inkD);margin-top:3px}
+
+/* ── OVERRIDE MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,22,17,.45);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeUp .2s ease}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 30px;width:480px;box-shadow:var(--shadowC)}
+.modal-title{font-family:var(--fontD);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.modal-sub{font-size:12px;color:var(--inkC);margin-bottom:20px;line-height:1.6;padding:10px 12px;background:var(--goldBg);border:1px solid rgba(168,96,26,.2);border-radius:var(--radiusC)}
+.modal-field{margin-bottom:14px}
+.modal-field label{display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--inkD);text-transform:uppercase;margin-bottom:5px}
+.modal-field select,.modal-field textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radiusC);background:var(--bg);font-family:var(--font);font-size:13px;color:var(--ink);outline:none;transition:border-color .14s}
+.modal-field select:focus,.modal-field textarea:focus{border-color:var(--teal)}
+.modal-field textarea{resize:vertical;min-height:72px;line-height:1.6}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+
+/* ── CASE ACTIONED STATE ── */
+.case-actioned td{opacity:.55}
+.case-actioned .actioned-chip{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;background:var(--sageBg);border:1px solid var(--sageXL);color:var(--sage);padding:2px 7px;border-radius:4px;letter-spacing:.5px}
+.action-btn-sm{padding:3px 9px;border-radius:4px;font-size:10px;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--inkC);cursor:pointer;transition:all .12s;white-space:nowrap}
+.action-btn-sm:hover{background:var(--tealBg);border-color:var(--teal);color:var(--teal)}
+.override-btn{padding:3px 9px;border-radius:4px;font-size:10px;font-weight:700;border:1px solid rgba(168,96,26,.3);background:var(--goldBg);color:var(--gold);cursor:pointer;transition:all .12s}
+.override-btn:hover{box-shadow:0 2px 8px rgba(168,96,26,.2)}
+
+/* ── DUAL LABEL CHIPS ── */
+.dual-label{display:flex;flex-direction:column;gap:2px}
+.risk-chip{font-size:8px;font-weight:700;padding:1px 6px;border-radius:3px;letter-spacing:.5px;display:inline-block;text-transform:uppercase;font-family:var(--fontM)}
+.rc-risk-h{background:var(--rustBg);color:var(--rust);border:1px solid var(--rustXL)}
+.rc-risk-m{background:var(--goldBg);color:var(--gold);border:1px solid rgba(168,96,26,.25)}
+.rc-risk-l{background:var(--tealBg);color:var(--teal);border:1px solid rgba(13,122,114,.2)}
+.rc-pri-h{background:var(--rustBg);color:var(--rust);border:1px solid var(--rustXL)}
+.rc-pri-m{background:var(--goldBg);color:var(--gold);border:1px solid rgba(168,96,26,.25)}
+.rc-pri-l{background:var(--sageBg);color:var(--sage);border:1px solid var(--sageXL)}
+.quick-win-pill{font-size:8px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--goldL));color:#fff;padding:1px 7px;border-radius:10px;letter-spacing:.5px;display:inline-block}
+
+/* ── MAP MODULE ── */
+.map-postcode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:14px}
+.map-postcode-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusB);padding:12px 14px;box-shadow:var(--shadow);cursor:pointer;transition:all .15s;position:relative;overflow:hidden;border-left:4px solid transparent}
+.map-postcode-card:hover{box-shadow:var(--shadowB);transform:translateY(-1px)}
+.mpc-rust{border-left-color:var(--rust)}.mpc-gold{border-left-color:var(--gold)}.mpc-teal{border-left-color:var(--teal)}
+.map-canvas-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+
 </style>
 </head>
 <body>
@@ -433,6 +495,16 @@ tr:last-child td{border-bottom:none}
     <span class="agent-status-dot asd-idle" id="ns-agent"></span>
   </div>
 
+  <div class="nav-section">Analytics</div>
+  <div class="nav-item" data-mod="matrix" onclick="switchMod(this,'matrix')">
+    <span class="ni-icon">⊠</span>
+    <div style="flex:1"><div class="ni-label">Priority × Risk Matrix</div><div class="ni-sub">2D caseload view</div></div>
+    <span id="qw-badge" style="font-size:9px;font-weight:700;background:var(--gold);color:#fff;padding:1px 6px;border-radius:10px;display:none">QW</span>
+  </div>
+  <div class="nav-item" data-mod="mapview" onclick="switchMod(this,'mapview')">
+    <span class="ni-icon">◉</span>
+    <div style="flex:1"><div class="ni-label">Risk Map</div><div class="ni-sub">Postcode · Geography</div></div>
+  </div>
   <div class="nav-section">Governance</div>
   <div class="nav-item" data-mod="governance" onclick="switchMod(this,'governance')">
     <span class="ni-icon">⊞</span>
@@ -477,6 +549,9 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
   </div>
+
+  <!-- QUICK WIN STRIP -->
+  <div id="quick-win-strip" style="display:none;margin-bottom:14px"></div>
 
   <!-- AGENT PIPELINE STRIP -->
   <div class="pipeline-strip" id="pipeline-strip">
@@ -529,7 +604,7 @@ tr:last-child td{border-bottom:none}
           <div style="font-family:var(--fontD);font-size:15px;font-weight:600;color:var(--ink)">Full Caseload</div>
           <div class="filter-bar" id="filter-bar"></div>
         </div>
-        <table><thead><tr><th>Tenant</th><th>UC Status</th><th>Arrears</th><th>P2P Score</th><th>Band</th><th>AI Recommended Action</th></tr></thead><tbody id="tbl-body"></tbody></table>
+        <table><thead><tr><th>Tenant</th><th>UC Status</th><th>Arrears</th><th>Risk</th><th>Priority</th><th>P2P</th><th>Status</th><th>Action</th></tr></thead><tbody id="tbl-body"></tbody></table>
       </div>
       <!-- ACTIVITY LOG -->
       <div class="activity-log">
@@ -863,6 +938,107 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
+
+<!-- ══ PRIORITY × RISK MATRIX ════════════════════════════════ -->
+<div id="mod-matrix" class="module">
+  <div style="height:100%;overflow-y:auto">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px">
+      <div>
+        <div class="page-title">Priority × Risk Matrix</div>
+        <div class="page-sub">Civica AML spec implemented — Risk = arrears likelihood · Priority = officer urgency · Quick Win = High-Priority + Responsive + Actionable</div>
+      </div>
+      <div id="matrix-completion-ring" style="flex-shrink:0"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+      <div class="card">
+        <div style="font-family:var(--fontD);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px">2×3 Classification Matrix</div>
+        <div style="font-size:11px;color:var(--inkD);margin-bottom:14px">Click any cell to filter the caseload below</div>
+        <!-- Row headers -->
+        <div style="display:grid;grid-template-columns:56px 1fr 1fr 1fr;gap:4px;margin-bottom:4px">
+          <div></div>
+          <div class="matrix-axis-label">Risk: HIGH</div>
+          <div class="matrix-axis-label">Risk: MED</div>
+          <div class="matrix-axis-label">Risk: LOW</div>
+        </div>
+        <div style="display:grid;grid-template-columns:56px 1fr 1fr 1fr;gap:4px" id="matrix-grid-inner">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+      <div class="card" id="matrix-insight-card">
+        <div style="font-family:var(--fontD);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px">⚡ Quick Wins — Act First</div>
+        <div id="matrix-quickwins"></div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--inkD);text-transform:uppercase;margin-bottom:8px">% Case Completion</div>
+          <div id="matrix-completion-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <div class="tbl-head">
+        <div style="font-family:var(--fontD);font-size:15px;font-weight:600;color:var(--ink)" id="matrix-tbl-title">Full Caseload — Dual Label View</div>
+        <button class="btn btn-ghost" style="font-size:11px" onclick="matrixFilter=null;renderMatrix()">Clear Filter</button>
+      </div>
+      <table><thead><tr>
+        <th>Tenant</th><th>Risk</th><th>Priority</th><th>Label</th>
+        <th>Arrears</th><th>P2P</th><th>EPC</th><th>Overcrowded</th>
+        <th>Entitlement Δ</th><th>Status</th><th>Action</th>
+      </tr></thead><tbody id="matrix-tbl-body"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RISK MAP ═══════════════════════════════════════════════ -->
+<div id="mod-mapview" class="module">
+  <div style="height:100%;overflow-y:auto">
+    <div class="page-title">Risk Map — Postcode Intelligence</div>
+    <div class="page-sub">Geographic distribution of risk across your housing patches · Civica Arrears Analytics Dashboard spec — Map Tile</div>
+    <div class="kpi-grid" id="map-kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px"></div>
+    <div class="map-canvas-wrap">
+      <canvas id="risk-map-canvas" width="1100" height="400" style="width:100%;display:block"></canvas>
+    </div>
+    <div style="font-family:var(--fontD);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px">All Postcodes — Risk Breakdown</div>
+    <div class="map-postcode-grid" id="map-postcode-grid"></div>
+  </div>
+</div>
+
+<!-- ══ OVERRIDE MODAL ═════════════════════════════════════════ -->
+<div id="override-modal" style="display:none">
+  <div class="modal-overlay" onclick="closeOverrideModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-title">Override ML Prediction</div>
+      <div class="modal-sub" id="override-modal-sub">GDPR Article 22 — Human-in-the-Loop Override. You are exercising the right to contest an automated decision. This override will be logged, audited, and fed back to the next model retrain.</div>
+      <div class="modal-field">
+        <label>Override Risk Level</label>
+        <select id="override-risk">
+          <option value="">— Keep model prediction —</option>
+          <option value="HIGH">HIGH — I believe risk is higher than scored</option>
+          <option value="MED">MEDIUM — Adjust to medium risk</option>
+          <option value="LOW">LOW — I believe risk is lower than scored</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Override Priority</label>
+        <select id="override-priority">
+          <option value="">— Keep model prediction —</option>
+          <option value="HIGH">HIGH — Act immediately</option>
+          <option value="MED">MEDIUM — Act this week</option>
+          <option value="LOW">LOW — Monitor only</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Reason for Override (mandatory — GDPR Art.22)</label>
+        <textarea id="override-reason" placeholder="e.g. Officer has direct knowledge tenant received redundancy notice not yet in system. Adjusting risk to HIGH."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeOverrideModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveOverride()">✓ Save Override & Log</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 </div><!-- /#body -->
 
@@ -906,30 +1082,56 @@ function getDrivers(t){const f=t.features,d=[];if(f.ucMigrating)d.push({txt:'UC 
 /* ══════════════════════════════════════════
    TENANT DATA
 ══════════════════════════════════════════ */
+/* ── DUAL-LABEL ENGINE: Risk = falling into arrears; Priority = officer urgency ── */
+function calcRiskLabel(f){
+  const s=mlScore(f);
+  if(s<40)return'HIGH';
+  if(s<65)return'MED';
+  return'LOW';
+}
+function calcPriorityLabel(f,score){
+  // Priority = urgency to act NOW — considers quick-win potential too
+  if(!f.responsive&&score<45)return'HIGH'; // uncontactable high-risk = top priority
+  if(f.ucMigrating&&score<55)return'HIGH'; // UC migration window = urgent
+  if(f.planBreach&&score<60)return'HIGH';
+  if(score<45&&f.regularity>.5)return'HIGH'; // quick win potential
+  if(score<65)return'MED';
+  return'LOW';
+}
+function isQuickWin(t){
+  // Quick Win = High Priority + Low/Med Risk + responsive tenant
+  return t.priority==='HIGH'&&t.riskLabel!=='HIGH'&&t.features.responsive&&t.bal<0;
+}
+
 const RAW=[
-  {id:'T01',name:'Margaret Hobson',ref:'NH-2244',addr:'12 Maple Close, SA1 4BT',rent:92,bal:-624,household:'Single, 2 children',employment:'Universal Credit',features:{missed6m:4,arrearWks:7,ucActive:true,ucMigrating:true,tenureYrs:2,planBreach:true,daysSincePay:28,regularity:.32,benefitPct:.9,responsive:false,complexNeeds:1}},
-  {id:'T02',name:'Darren Ashworth',ref:'NH-1887',addr:'7 Birch Lane, SA3 2PQ',rent:105,bal:-441,household:'Single adult',employment:'Part-time / UC',features:{missed6m:3,arrearWks:4,ucActive:true,ucMigrating:false,tenureYrs:1,planBreach:true,daysSincePay:21,regularity:.44,benefitPct:.8,responsive:false,complexNeeds:0}},
-  {id:'T03',name:'Fatima Al-Rahman',ref:'NH-3012',addr:'33 Oak Avenue, CF10 1AB',rent:88,bal:-352,household:'Couple, 1 child',employment:'Universal Credit',features:{missed6m:3,arrearWks:4,ucActive:true,ucMigrating:true,tenureYrs:3,planBreach:false,daysSincePay:18,regularity:.51,benefitPct:.75,responsive:true,complexNeeds:0}},
-  {id:'T04',name:'Colin Pryce',ref:'NH-0944',addr:'2A Station Rd, NP20 3RT',rent:97,bal:-291,household:'Single adult',employment:'Employed part-time',features:{missed6m:2,arrearWks:3,ucActive:false,ucMigrating:false,tenureYrs:4,planBreach:true,daysSincePay:16,regularity:.58,benefitPct:.4,responsive:true,complexNeeds:0}},
-  {id:'T05',name:'Sandra Okafor',ref:'NH-2781',addr:'15 Elm Drive, LL12 8XY',rent:80,bal:-240,household:'Single, 3 children',employment:'Universal Credit',features:{missed6m:2,arrearWks:3,ucActive:true,ucMigrating:false,tenureYrs:2,planBreach:false,daysSincePay:14,regularity:.62,benefitPct:.85,responsive:true,complexNeeds:1}},
-  {id:'T06',name:'Tony Mahmoud',ref:'NH-1565',addr:'88 Cedar St, CF24 2WQ',rent:110,bal:-220,household:'Couple',employment:'Self-employed',features:{missed6m:2,arrearWks:2,ucActive:false,ucMigrating:false,tenureYrs:3,planBreach:false,daysSincePay:12,regularity:.67,benefitPct:.2,responsive:true,complexNeeds:0}},
-  {id:'T07',name:'Yvonne Cartwright',ref:'NH-3340',addr:'4 Hawthorn Way, NP44 6DZ',rent:95,bal:-190,household:'Single adult',employment:'UC — migrating soon',features:{missed6m:1,arrearWks:2,ucActive:true,ucMigrating:false,tenureYrs:5,planBreach:false,daysSincePay:10,regularity:.72,benefitPct:.65,responsive:true,complexNeeds:0}},
-  {id:'T08',name:'Brendan Hughes',ref:'NH-0672',addr:'21 Willow Ct, SA5 7MN',rent:85,bal:-170,household:'Couple, 1 child',employment:'Employed',features:{missed6m:1,arrearWks:2,ucActive:false,ucMigrating:false,tenureYrs:6,planBreach:false,daysSincePay:9,regularity:.74,benefitPct:.3,responsive:true,complexNeeds:0}},
-  {id:'T09',name:'Priya Sharma',ref:'NH-2019',addr:'9 Larch Court, CF3 0AB',rent:92,bal:-92,household:'Single adult',employment:'Full-time employed',features:{missed6m:1,arrearWks:1,ucActive:false,ucMigrating:false,tenureYrs:4,planBreach:false,daysSincePay:8,regularity:.78,benefitPct:.1,responsive:true,complexNeeds:0}},
-  {id:'T10',name:'Gareth Evans',ref:'NH-1443',addr:'3 Pine Row, NP19 0TF',rent:100,bal:-100,household:'Single adult',employment:'Universal Credit',features:{missed6m:1,arrearWks:1,ucActive:true,ucMigrating:false,tenureYrs:7,planBreach:false,daysSincePay:7,regularity:.81,benefitPct:.7,responsive:true,complexNeeds:0}},
-  {id:'T11',name:'Helen Watkins',ref:'NH-0338',addr:'56 Sycamore Pl, SA8 4GH',rent:88,bal:0,household:'Couple',employment:'Full-time employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:8,planBreach:false,daysSincePay:4,regularity:.91,benefitPct:0,responsive:true,complexNeeds:0}},
-  {id:'T12',name:'James Connolly',ref:'NH-2890',addr:'14 Rowan St, CF11 7KP',rent:105,bal:0,household:'Single adult',employment:'Full-time employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:12,planBreach:false,daysSincePay:3,regularity:.95,benefitPct:0,responsive:true,complexNeeds:0}},
-  {id:'T13',name:'Amina Osei',ref:'NH-1102',addr:'7 Chestnut Cl, LL11 2AB',rent:80,bal:0,household:'Single, 2 children',employment:'Universal Credit',features:{missed6m:0,arrearWks:0,ucActive:true,ucMigrating:false,tenureYrs:6,planBreach:false,daysSincePay:5,regularity:.89,benefitPct:.8,responsive:true,complexNeeds:0}},
-  {id:'T14',name:'David Barlow',ref:'NH-3677',addr:'31 Poplar Ave, SA1 7TT',rent:92,bal:0,household:'Couple, 2 children',employment:'Employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:9,planBreach:false,daysSincePay:6,regularity:.93,benefitPct:0,responsive:true,complexNeeds:0}},
-  {id:'T15',name:'Nkechi Obi',ref:'NH-2255',addr:'22 Beech Rd, NP20 5QR',rent:97,bal:0,household:'Single adult',employment:'Part-time / studying',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:3,planBreach:false,daysSincePay:5,regularity:.87,benefitPct:.2,responsive:true,complexNeeds:0}},
+  {id:'T01',name:'Margaret Hobson',ref:'NH-2244',addr:'12 Maple Close, SA1 4BT',postcode:'SA1',rent:92,bal:-624,household:'Single, 2 children',employment:'Universal Credit',features:{missed6m:4,arrearWks:7,ucActive:true,ucMigrating:true,tenureYrs:2,planBreach:true,daysSincePay:28,regularity:.32,benefitPct:.9,responsive:false,complexNeeds:1,epcRating:'E',voidHistory:1,overcrowded:true,arrangementCount:2,entitlementChanges:4}},
+  {id:'T02',name:'Darren Ashworth',ref:'NH-1887',addr:'7 Birch Lane, SA3 2PQ',postcode:'SA3',rent:105,bal:-441,household:'Single adult',employment:'Part-time / UC',features:{missed6m:3,arrearWks:4,ucActive:true,ucMigrating:false,tenureYrs:1,planBreach:true,daysSincePay:21,regularity:.44,benefitPct:.8,responsive:false,complexNeeds:0,epcRating:'D',voidHistory:0,overcrowded:false,arrangementCount:1,entitlementChanges:2}},
+  {id:'T03',name:'Fatima Al-Rahman',ref:'NH-3012',addr:'33 Oak Avenue, CF10 1AB',postcode:'CF10',rent:88,bal:-352,household:'Couple, 1 child',employment:'Universal Credit',features:{missed6m:3,arrearWks:4,ucActive:true,ucMigrating:true,tenureYrs:3,planBreach:false,daysSincePay:18,regularity:.51,benefitPct:.75,responsive:true,complexNeeds:0,epcRating:'D',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:3}},
+  {id:'T04',name:'Colin Pryce',ref:'NH-0944',addr:'2A Station Rd, NP20 3RT',postcode:'NP20',rent:97,bal:-291,household:'Single adult',employment:'Employed part-time',features:{missed6m:2,arrearWks:3,ucActive:false,ucMigrating:false,tenureYrs:4,planBreach:true,daysSincePay:16,regularity:.58,benefitPct:.4,responsive:true,complexNeeds:0,epcRating:'C',voidHistory:0,overcrowded:false,arrangementCount:1,entitlementChanges:1}},
+  {id:'T05',name:'Sandra Okafor',ref:'NH-2781',addr:'15 Elm Drive, LL12 8XY',postcode:'LL12',rent:80,bal:-240,household:'Single, 3 children',employment:'Universal Credit',features:{missed6m:2,arrearWks:3,ucActive:true,ucMigrating:false,tenureYrs:2,planBreach:false,daysSincePay:14,regularity:.62,benefitPct:.85,responsive:true,complexNeeds:1,epcRating:'E',voidHistory:1,overcrowded:true,arrangementCount:0,entitlementChanges:5}},
+  {id:'T06',name:'Tony Mahmoud',ref:'NH-1565',addr:'88 Cedar St, CF24 2WQ',postcode:'CF24',rent:110,bal:-220,household:'Couple',employment:'Self-employed',features:{missed6m:2,arrearWks:2,ucActive:false,ucMigrating:false,tenureYrs:3,planBreach:false,daysSincePay:12,regularity:.67,benefitPct:.2,responsive:true,complexNeeds:0,epcRating:'C',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T07',name:'Yvonne Cartwright',ref:'NH-3340',addr:'4 Hawthorn Way, NP44 6DZ',postcode:'NP44',rent:95,bal:-190,household:'Single adult',employment:'UC — migrating soon',features:{missed6m:1,arrearWks:2,ucActive:true,ucMigrating:false,tenureYrs:5,planBreach:false,daysSincePay:10,regularity:.72,benefitPct:.65,responsive:true,complexNeeds:0,epcRating:'D',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:2}},
+  {id:'T08',name:'Brendan Hughes',ref:'NH-0672',addr:'21 Willow Ct, SA5 7MN',postcode:'SA5',rent:85,bal:-170,household:'Couple, 1 child',employment:'Employed',features:{missed6m:1,arrearWks:2,ucActive:false,ucMigrating:false,tenureYrs:6,planBreach:false,daysSincePay:9,regularity:.74,benefitPct:.3,responsive:true,complexNeeds:0,epcRating:'B',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T09',name:'Priya Sharma',ref:'NH-2019',addr:'9 Larch Court, CF3 0AB',postcode:'CF3',rent:92,bal:-92,household:'Single adult',employment:'Full-time employed',features:{missed6m:1,arrearWks:1,ucActive:false,ucMigrating:false,tenureYrs:4,planBreach:false,daysSincePay:8,regularity:.78,benefitPct:.1,responsive:true,complexNeeds:0,epcRating:'C',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T10',name:'Gareth Evans',ref:'NH-1443',addr:'3 Pine Row, NP19 0TF',postcode:'NP19',rent:100,bal:-100,household:'Single adult',employment:'Universal Credit',features:{missed6m:1,arrearWks:1,ucActive:true,ucMigrating:false,tenureYrs:7,planBreach:false,daysSincePay:7,regularity:.81,benefitPct:.7,responsive:true,complexNeeds:0,epcRating:'D',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:1}},
+  {id:'T11',name:'Helen Watkins',ref:'NH-0338',addr:'56 Sycamore Pl, SA8 4GH',postcode:'SA8',rent:88,bal:0,household:'Couple',employment:'Full-time employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:8,planBreach:false,daysSincePay:4,regularity:.91,benefitPct:0,responsive:true,complexNeeds:0,epcRating:'B',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T12',name:'James Connolly',ref:'NH-2890',addr:'14 Rowan St, CF11 7KP',postcode:'CF11',rent:105,bal:0,household:'Single adult',employment:'Full-time employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:12,planBreach:false,daysSincePay:3,regularity:.95,benefitPct:0,responsive:true,complexNeeds:0,epcRating:'A',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T13',name:'Amina Osei',ref:'NH-1102',addr:'7 Chestnut Cl, LL11 2AB',postcode:'LL11',rent:80,bal:0,household:'Single, 2 children',employment:'Universal Credit',features:{missed6m:0,arrearWks:0,ucActive:true,ucMigrating:false,tenureYrs:6,planBreach:false,daysSincePay:5,regularity:.89,benefitPct:.8,responsive:true,complexNeeds:0,epcRating:'C',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:2}},
+  {id:'T14',name:'David Barlow',ref:'NH-3677',addr:'31 Poplar Ave, SA1 7TT',postcode:'SA1',rent:92,bal:0,household:'Couple, 2 children',employment:'Employed',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:9,planBreach:false,daysSincePay:6,regularity:.93,benefitPct:0,responsive:true,complexNeeds:0,epcRating:'B',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
+  {id:'T15',name:'Nkechi Obi',ref:'NH-2255',addr:'22 Beech Rd, NP20 5QR',postcode:'NP20',rent:97,bal:0,household:'Single adult',employment:'Part-time / studying',features:{missed6m:0,arrearWks:0,ucActive:false,ucMigrating:false,tenureYrs:3,planBreach:false,daysSincePay:5,regularity:.87,benefitPct:.2,responsive:true,complexNeeds:0,epcRating:'C',voidHistory:0,overcrowded:false,arrangementCount:0,entitlementChanges:0}},
 ];
-const TENANTS=RAW.map(t=>{const score=mlScore(t.features);return{...t,score,band:getBand(score),drivers:getDrivers(t)};}).sort((a,b)=>a.score-b.score);
+const TENANTS=RAW.map(t=>{
+  const score=mlScore(t.features);
+  const riskLabel=calcRiskLabel(t.features);
+  const priority=calcPriorityLabel(t.features,score);
+  return{...t,score,band:getBand(score),drivers:getDrivers(t),riskLabel,priority,caseActioned:false,caseActionedDate:null,overrideNote:null};
+}).sort((a,b)=>a.score-b.score);
 
 /* ══════════════════════════════════════════
    STATE
 ══════════════════════════════════════════ */
 let selectedTenant=TENANTS[0],sharedCtx={},feedbackLog={},activeFilter='all',activeChannel='sms',agentMode='priority',outreachSelected=TENANTS[0],paymentSelected=null,benefitsSelected=null;
-let activityLog=[];
+let activityLog=[],overrideModalTenant=null,matrixFilter=null;
 
 /* ══════════════════════════════════════════
    AGENTIC FRAMEWORK
@@ -1227,6 +1429,8 @@ function switchMod(el,mod){
   if(mod==='benefits')renderBenefits();
   if(mod==='agent')renderAgent();
   if(mod==='governance')renderGovernance();
+  if(mod==='matrix')renderMatrix();
+  if(mod==='mapview')renderMapView();
 }
 
 /* ══════════════════════════════════════════
@@ -1238,11 +1442,15 @@ function renderDashboard(){
   const arrears=TENANTS.reduce((s,t)=>s+(t.bal<0?Math.abs(t.bal):0),0);
   const autoP=Math.round(counts.GREEN/total*100);
   document.getElementById('topbar-stats').textContent=`${total} tenants · ${TENANTS.filter(t=>t.bal<0).length} in arrears`;
+  const qwCount=TENANTS.filter(isQuickWin).length;
+  const actionedCount=TENANTS.filter(t=>t.caseActioned).length;
+  const actionableCount=TENANTS.filter(t=>t.bal<0||t.band!=='GREEN').length;
+  const completionPct=actionableCount?Math.round(actionedCount/actionableCount*100):0;
   document.getElementById('kpi-grid').innerHTML=[
     {label:'High Risk',val:counts.RED,sub:'Score < 40 — officer action',cls:'rust',vcls:'rust'},
     {label:'Medium Risk',val:counts.AMBER,sub:'Score 40–69 — early outreach',cls:'gold',vcls:'gold'},
-    {label:'Low Risk (Auto)',val:counts.GREEN,sub:`${autoP}% caseload auto-managed`,cls:'teal',vcls:'teal'},
-    {label:'Total Arrears',val:'£'+arrears.toLocaleString(),sub:`${TENANTS.filter(t=>t.bal<0).length} accounts in deficit`,cls:'',vcls:'gold'}
+    {label:'Quick Wins',val:qwCount,sub:'High-pri · responsive · actionable',cls:'gold',vcls:'gold'},
+    {label:'Case Completion',val:`<span id="case-completion-kpi">${completionPct}%</span>`,sub:`${actionedCount} of ${actionableCount} actioned this cycle`,cls:'teal',vcls:'teal'},
   ].map(k=>`<div class="kpi-card ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-value ${k.vcls}">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
 
   document.getElementById('band-bars').innerHTML=['RED','AMBER','GREEN'].map(b=>{
@@ -1255,26 +1463,48 @@ function renderDashboard(){
 
   document.getElementById('top-arrears').innerHTML=TENANTS.filter(t=>t.bal<0).slice(0,5).map(t=>`<div onclick="selectTenant('${t.id}')" style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer">${gaugeHTML(t.score,t.band,38)}<div style="flex:1"><div style="font-weight:600;font-size:13px">${t.name}</div><div style="font-size:10px;color:var(--inkD)">${t.features.arrearWks}wk arrears</div></div><span style="font-family:var(--fontM);font-size:13px;color:var(--rust)">−£${Math.abs(t.bal)}</span></div>`).join('');
 
+  renderQuickWinStrip();
   document.getElementById('filter-bar').innerHTML=['all','RED','AMBER','GREEN'].map(f=>`<button class="filter-btn f-${f.toLowerCase()} ${activeFilter===f?'active':''}" onclick="setFilter('${f}')">${f==='all'?'All':f+' ('+counts[f]+')'}</button>`).join('');
   renderTable();
   renderAgentRoster();
 }
 
+function riskColor(r){return r==='HIGH'?'var(--rust)':r==='MED'?'var(--gold)':'var(--teal)';}
+function priColor(p){return p==='HIGH'?'var(--rust)':p==='MED'?'var(--gold)':'var(--sage)';}
+function riskChipCls(r){return r==='HIGH'?'rc-risk-h':r==='MED'?'rc-risk-m':'rc-risk-l';}
+function priChipCls(p){return p==='HIGH'?'rc-pri-h':p==='MED'?'rc-pri-m':'rc-pri-l';}
+
 function renderTable(){
   const visible=activeFilter==='all'?TENANTS:TENANTS.filter(t=>t.band===activeFilter);
+  const actioned=TENANTS.filter(t=>t.caseActioned).length;
+  const actionable=TENANTS.filter(t=>t.bal<0||t.band!=='GREEN').length;
   document.getElementById('tbl-body').innerHTML=visible.map(t=>{
     const ctx=sharedCtx[t.id]||{};
-    const action=ctx.action||(t.band==='RED'?'🔴 Officer priority':t.band==='AMBER'?'📱 Early outreach':'✅ Auto-managed');
     const hasCtx=!!(ctx.analysis||ctx.benefits);
-    return`<tr class="${selectedTenant?.id===t.id?'sel':''}" onclick="selectTenant('${t.id}')">
-      <td><div style="font-weight:600;font-size:13px">${t.name}${hasCtx?'<span style="font-size:9px;color:var(--teal);margin-left:6px">✓ AI</span>':''}</div><div style="font-size:10px;color:var(--inkD);font-family:var(--fontM)">${t.ref}</div></td>
+    const qw=isQuickWin(t);
+    const epcColor=t.features.epcRating<='C'?'var(--teal)':t.features.epcRating<='D'?'var(--gold)':'var(--rust)';
+    return`<tr class="${t.caseActioned?'case-actioned':''}${selectedTenant?.id===t.id?' sel':''}" onclick="selectTenant('${t.id}')">
+      <td>
+        <div style="font-weight:600;font-size:13px">${t.name}${hasCtx?'<span style="font-size:9px;color:var(--teal);margin-left:5px">✓</span>':''}${qw?'<span class="quick-win-pill" style="margin-left:6px">QUICK WIN</span>':''}</div>
+        <div style="font-size:10px;color:var(--inkD);font-family:var(--fontM)">${t.ref}</div>
+      </td>
       <td>${ucTagHTML(t.features)}</td>
       <td><span style="font-family:var(--fontM);font-size:13px;color:${t.bal<0?'var(--rust)':'var(--teal)'}">${t.bal<0?'−£'+Math.abs(t.bal):'£0'}</span></td>
-      <td>${gaugeHTML(t.score,t.band,42)}</td>
-      <td><span style="display:inline-flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:${bandColor(t.band)};display:inline-block"></span><span style="font-size:12px;font-weight:700;color:${bandColor(t.band)}">${t.band}</span></span></td>
-      <td style="font-size:12px;color:var(--inkC);max-width:180px">${action}</td>
+      <td><span class="risk-chip ${riskChipCls(t.riskLabel)}">R:${t.riskLabel}</span></td>
+      <td><span class="risk-chip ${priChipCls(t.priority)}">P:${t.priority}</span></td>
+      <td>${gaugeHTML(t.score,t.band,38)}</td>
+      <td>${t.caseActioned
+        ?`<span class="actioned-chip">✓ ACTIONED<br><span style="font-size:8px;opacity:.7">${t.caseActionedDate}</span></span>`
+        :t.overrideNote?`<span class="risk-chip rc-risk-m">OVERRIDDEN</span>`:'<span style="font-size:10px;color:var(--inkD)">Pending</span>'
+      }</td>
+      <td onclick="event.stopPropagation()" style="white-space:nowrap">
+        ${!t.caseActioned?`<button class="action-btn-sm" onclick="markCaseActioned('${t.id}')">✓ Mark Actioned</button> `:''}
+        <button class="override-btn" onclick="openOverrideModal('${t.id}')">⊘ Override</button>
+      </td>
     </tr>`;
   }).join('');
+  // Update completion strip
+  renderQuickWinStrip();
 }
 
 function setFilter(f){activeFilter=f;renderDashboard();}
@@ -1531,6 +1761,267 @@ function buildGovFairness(){
 /* ══════════════════════════════════════════
    INIT
 ══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   CASE ACTIONING (Civica Spec §3.1.6)
+══════════════════════════════════════════ */
+function markCaseActioned(id){
+  const t=TENANTS.find(t=>t.id===id);
+  if(!t)return;
+  t.caseActioned=true;
+  t.caseActionedDate=new Date().toLocaleDateString('en-GB');
+  logActivity('feedback',`Case actioned: ${t.name} · ${new Date().toLocaleTimeString('en-GB')}. Logged to retrain queue.`,'success');
+  setAgentState('feedback','running');
+  setTimeout(()=>setAgentState('feedback','done'),500);
+  renderTable();
+  renderMatrix();
+  updateCaseCompletionKPI();
+}
+
+function updateCaseCompletionKPI(){
+  const actionable=TENANTS.filter(t=>t.bal<0||t.band!=='GREEN').length;
+  const actioned=TENANTS.filter(t=>t.caseActioned).length;
+  const pct=actionable?Math.round(actioned/actionable*100):0;
+  const el=document.getElementById('case-completion-kpi');
+  if(el) el.textContent=pct+'%';
+}
+
+/* ══════════════════════════════════════════
+   QUICK WIN STRIP
+══════════════════════════════════════════ */
+function renderQuickWinStrip(){
+  const qws=TENANTS.filter(t=>isQuickWin(t)&&!t.caseActioned);
+  const badge=document.getElementById('qw-badge');
+  if(badge){badge.style.display=qws.length?'inline':'none';badge.textContent=qws.length;}
+  const el=document.getElementById('quick-win-strip');
+  if(!el)return;
+  if(!qws.length){el.style.display='none';return;}
+  el.style.display='block';
+  el.innerHTML=`<div style="background:linear-gradient(135deg,var(--goldBg),var(--tealBg));border:1px solid rgba(168,96,26,.22);border-radius:var(--radiusB);padding:11px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;flex-shrink:0">⚡ Quick Wins (${qws.length})</div>
+    ${qws.map(t=>`<div onclick="selectTenant('${t.id}')" style="display:flex;align-items:center;gap:7px;padding:5px 11px;background:rgba(255,255,255,.7);border:1px solid rgba(168,96,26,.2);border-radius:20px;cursor:pointer;font-size:11px;font-weight:600;color:var(--inkB)">${t.name}<span style="font-family:var(--fontM);font-size:10px;color:var(--rust)">−£${Math.abs(t.bal)}</span><button onclick="event.stopPropagation();markCaseActioned('${t.id}')" style="background:var(--gold);color:#fff;border:none;border-radius:3px;padding:1px 7px;font-size:9px;font-weight:700;cursor:pointer">✓ Act</button></div>`).join('')}
+  </div>`;
+}
+
+/* ══════════════════════════════════════════
+   OVERRIDE MODAL (GDPR Art.22)
+══════════════════════════════════════════ */
+function openOverrideModal(id){
+  overrideModalTenant=TENANTS.find(t=>t.id===id);
+  if(!overrideModalTenant)return;
+  document.getElementById('override-modal-sub').innerHTML=`<strong>${overrideModalTenant.name}</strong> (${overrideModalTenant.ref}) · Current ML prediction: Risk <strong>${overrideModalTenant.riskLabel}</strong> · Priority <strong>${overrideModalTenant.priority}</strong> · P2P Score <strong>${overrideModalTenant.score}</strong><br><br>GDPR Article 22 — exercising the right to contest an automated decision. This override will be logged, audited, and fed to the next model retrain.`;
+  document.getElementById('override-risk').value='';
+  document.getElementById('override-priority').value='';
+  document.getElementById('override-reason').value='';
+  document.getElementById('override-modal').style.display='block';
+}
+function closeOverrideModal(e){
+  if(e&&e.target!==e.currentTarget)return;
+  document.getElementById('override-modal').style.display='none';
+  overrideModalTenant=null;
+}
+function saveOverride(){
+  const reason=document.getElementById('override-reason').value.trim();
+  if(!reason){document.getElementById('override-reason').style.borderColor='var(--rust)';return;}
+  const newRisk=document.getElementById('override-risk').value;
+  const newPri=document.getElementById('override-priority').value;
+  if(!overrideModalTenant)return;
+  if(newRisk)overrideModalTenant.riskLabel=newRisk;
+  if(newPri)overrideModalTenant.priority=newPri;
+  overrideModalTenant.overrideNote=reason;
+  logActivity('risk',`Override: ${overrideModalTenant.name} → Risk:${overrideModalTenant.riskLabel} Pri:${overrideModalTenant.priority} · "${reason.slice(0,60)}…"`,'warn');
+  document.getElementById('override-modal').style.display='none';
+  overrideModalTenant=null;
+  renderTable();
+  renderMatrix();
+}
+
+/* ══════════════════════════════════════════
+   PRIORITY × RISK MATRIX MODULE
+══════════════════════════════════════════ */
+function renderMatrix(){
+  const priorities=['HIGH','MED','LOW'];
+  const risks=['HIGH','MED','LOW'];
+  const clsMap={
+    'HIGH-HIGH':'mc-hh','HIGH-MED':'mc-hm','HIGH-LOW':'mc-hl',
+    'MED-HIGH':'mc-mh','MED-MED':'mc-mm','MED-LOW':'mc-ml',
+    'LOW-HIGH':'mc-lh','LOW-MED':'mc-lm','LOW-LOW':'mc-ll',
+  };
+  const labelMap={
+    'HIGH-HIGH':'Critical — Complex','HIGH-MED':'Urgent — Manageable','HIGH-LOW':'⚡ Quick Win',
+    'MED-HIGH':'Monitor Closely','MED-MED':'Standard Case','MED-LOW':'Early Outreach',
+    'LOW-HIGH':'Watch — Emerging','LOW-MED':'Low Touch','LOW-LOW':'Auto-Managed',
+  };
+  const grid=document.getElementById('matrix-grid-inner');
+  if(!grid)return;
+
+  let innerHTML='';
+  priorities.forEach(pri=>{
+    innerHTML+=`<div style="display:flex;align-items:center;justify-content:flex-end;padding-right:8px"><span style="font-size:9px;font-weight:700;letter-spacing:.8px;color:var(--inkD);text-transform:uppercase;white-space:nowrap">P:${pri}</span></div>`;
+    risks.forEach(risk=>{
+      const key=`${pri}-${risk}`;
+      const tenants=TENANTS.filter(t=>t.priority===pri&&t.riskLabel===risk);
+      const unactioned=tenants.filter(t=>!t.caseActioned);
+      const isQW=pri==='HIGH'&&risk!=='HIGH';
+      const isActive=matrixFilter===key;
+      innerHTML+=`<div class="matrix-cell ${clsMap[key]}" onclick="setMatrixFilter('${key}')" style="${isActive?'box-shadow:0 0 0 2px var(--teal);':''}">
+        ${isQW?'<div class="quick-win-badge">QUICK WIN</div>':''}
+        <div class="matrix-cell-count">${unactioned.length}<span style="font-size:11px;opacity:.5">/${tenants.length}</span></div>
+        <div class="matrix-cell-label">${labelMap[key]}</div>
+      </div>`;
+    });
+  });
+  grid.innerHTML=innerHTML;
+
+  // Quick wins panel
+  const qws=TENANTS.filter(t=>isQuickWin(t)&&!t.caseActioned);
+  document.getElementById('matrix-quickwins').innerHTML=qws.length
+    ? qws.map(t=>`<div onclick="selectTenant('${t.id}')" style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--goldBg);border:1px solid rgba(168,96,26,.2);border-radius:7px;margin-bottom:6px;cursor:pointer">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0"></span>
+        <div style="flex:1"><div style="font-weight:600;font-size:13px">${t.name}</div><div style="font-size:10px;color:var(--inkD)">${t.features.arrearWks}wk · £${Math.abs(t.bal)} · Responsive ✓</div></div>
+        <button onclick="event.stopPropagation();markCaseActioned('${t.id}')" class="btn btn-gold" style="font-size:10px;padding:4px 10px">✓ Act</button>
+      </div>`).join('')
+    : '<div style="font-size:12px;color:var(--inkD);padding:12px 0">No quick wins pending — all actioned ✓</div>';
+
+  // Completion bar
+  const actionable=TENANTS.filter(t=>t.bal<0||t.band!=='GREEN').length;
+  const actioned=TENANTS.filter(t=>t.caseActioned).length;
+  const pct=actionable?Math.round(actioned/actionable*100):0;
+  document.getElementById('matrix-completion-bar').innerHTML=`
+    <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+      <span style="font-size:12px;color:var(--inkC)">${actioned} of ${actionable} cases actioned</span>
+      <span style="font-family:var(--fontM);font-size:14px;font-weight:700;color:var(--teal)">${pct}%</span>
+    </div>
+    <div style="height:8px;background:var(--bg2);border-radius:5px;overflow:hidden">
+      <div style="height:100%;background:linear-gradient(90deg,var(--teal),var(--tealL));border-radius:5px;width:${pct}%;transition:width 1s ease"></div>
+    </div>`;
+
+  // Matrix table
+  const visible=matrixFilter
+    ? TENANTS.filter(t=>`${t.priority}-${t.riskLabel}`===matrixFilter)
+    : TENANTS;
+  document.getElementById('matrix-tbl-title').textContent=matrixFilter
+    ? `Filtered: Priority ${matrixFilter.split('-')[0]} × Risk ${matrixFilter.split('-')[1]} (${visible.length} tenants)`
+    : `Full Caseload — Dual Label View (${visible.length} tenants)`;
+  const epcColour=r=>r<='C'?'var(--teal)':r<='D'?'var(--gold)':'var(--rust)';
+  document.getElementById('matrix-tbl-body').innerHTML=visible.map(t=>`<tr class="${t.caseActioned?'case-actioned':''}" onclick="selectTenant('${t.id}');switchMod(document.querySelector('[data-mod=dashboard]'),'dashboard')">
+    <td><div style="font-weight:600">${t.name}</div><div style="font-size:10px;color:var(--inkD);font-family:var(--fontM)">${t.ref}</div></td>
+    <td><span class="risk-chip ${riskChipCls(t.riskLabel)}">R:${t.riskLabel}</span></td>
+    <td><span class="risk-chip ${priChipCls(t.priority)}">P:${t.priority}</span></td>
+    <td>${isQuickWin(t)?'<span class="quick-win-pill">QUICK WIN</span>':t.overrideNote?'<span class="risk-chip rc-risk-m">OVERRIDDEN</span>':'—'}</td>
+    <td><span style="font-family:var(--fontM);color:${t.bal<0?'var(--rust)':'var(--teal)'}">${t.bal<0?'−£'+Math.abs(t.bal):'£0'}</span></td>
+    <td>${gaugeHTML(t.score,t.band,36)}</td>
+    <td><span style="font-family:var(--fontM);font-size:11px;color:${epcColour(t.features.epcRating)}">${t.features.epcRating}</span></td>
+    <td><span style="font-size:11px;color:${t.features.overcrowded?'var(--rust)':'var(--inkD)'}">${t.features.overcrowded?'⚠ Yes':'No'}</span></td>
+    <td><span style="font-family:var(--fontM);font-size:11px;color:${t.features.entitlementChanges>2?'var(--gold)':'var(--inkD)'}">${t.features.entitlementChanges}</span></td>
+    <td>${t.caseActioned?`<span class="actioned-chip">✓ ${t.caseActionedDate}</span>`:'<span style="font-size:10px;color:var(--inkD)">Pending</span>'}</td>
+    <td onclick="event.stopPropagation()">
+      ${!t.caseActioned?`<button class="action-btn-sm" onclick="markCaseActioned('${t.id}')">✓ Act</button> `:''}
+      <button class="override-btn" onclick="openOverrideModal('${t.id}')">⊘</button>
+    </td>
+  </tr>`).join('');
+}
+
+function setMatrixFilter(key){
+  matrixFilter=matrixFilter===key?null:key;
+  renderMatrix();
+}
+
+/* ══════════════════════════════════════════
+   RISK MAP MODULE
+══════════════════════════════════════════ */
+function renderMapView(){
+  // KPIs
+  const postcodes=[...new Set(TENANTS.map(t=>t.postcode))];
+  const redPc=postcodes.filter(pc=>TENANTS.filter(t=>t.postcode===pc).some(t=>t.band==='RED'));
+  document.getElementById('map-kpi-grid').innerHTML=[
+    {label:'Postcodes Monitored',val:postcodes.length,cls:'teal',vcls:'teal'},
+    {label:'High-Risk Patches',val:redPc.length,cls:'rust',vcls:'rust'},
+    {label:'Quick Wins by Area',val:TENANTS.filter(isQuickWin).length,cls:'gold',vcls:'gold'},
+    {label:'Avg Risk per Patch',val:(TENANTS.reduce((s,t)=>s+(t.riskLabel==='HIGH'?3:t.riskLabel==='MED'?2:1),0)/postcodes.length).toFixed(1),cls:'',vcls:'gold'},
+  ].map(k=>`<div class="kpi-card ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-value ${k.vcls}">${k.val}</div></div>`).join('');
+
+  // Canvas map — abstract UK patch grid
+  const canvas=document.getElementById('risk-map-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#F8F4ED';ctx.fillRect(0,0,W,H);
+
+  // Grid lines
+  ctx.strokeStyle='#E8DFD0';ctx.lineWidth=1;
+  for(let x=0;x<W;x+=55){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=55){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Place postcodes as pins
+  const pcData=postcodes.map((pc,i)=>{
+    const tenants=TENANTS.filter(t=>t.postcode===pc);
+    const highCount=tenants.filter(t=>t.band==='RED').length;
+    const totalArrears=tenants.reduce((s,t)=>s+(t.bal<0?Math.abs(t.bal):0),0);
+    // Pseudo-geographic placement based on known Welsh postcodes
+    const positions={SA1:{x:120,y:220},SA3:{x:80,y:260},SA5:{x:100,y:200},SA8:{x:160,y:180},
+      CF10:{x:420,y:240},CF3:{x:460,y:220},CF11:{x:400,y:250},CF24:{x:440,y:230},
+      NP19:{x:560,y:200},NP20:{x:540,y:210},NP44:{x:520,y:180},
+      LL11:{x:700,y:140},LL12:{x:720,y:130}};
+    const pos=positions[pc]||{x:200+i*60,y:150+Math.sin(i)*80};
+    return{pc,tenants,highCount,totalArrears,pos};
+  });
+
+  // Draw connections
+  pcData.forEach((p,i)=>{
+    if(i>0){
+      const prev=pcData[i-1];
+      ctx.strokeStyle='rgba(200,191,181,.3)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(prev.pos.x,prev.pos.y);ctx.lineTo(p.pos.x,p.pos.y);ctx.stroke();
+    }
+  });
+
+  // Draw pins
+  pcData.forEach(p=>{
+    const hasRed=p.tenants.some(t=>t.band==='RED');
+    const hasAmber=p.tenants.some(t=>t.band==='AMBER');
+    const col=hasRed?'#B83A20':hasAmber?'#A8601A':'#0D7A72';
+    const r=14+Math.min(p.highCount*4,10);
+    // Glow
+    const grad=ctx.createRadialGradient(p.pos.x,p.pos.y,0,p.pos.x,p.pos.y,r+8);
+    grad.addColorStop(0,col+'40');grad.addColorStop(1,col+'00');
+    ctx.fillStyle=grad;ctx.beginPath();ctx.arc(p.pos.x,p.pos.y,r+8,0,Math.PI*2);ctx.fill();
+    // Pin
+    ctx.fillStyle=col;ctx.beginPath();ctx.arc(p.pos.x,p.pos.y,r,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+    // Count
+    ctx.fillStyle='#fff';ctx.font=`bold ${r>16?12:10}px JetBrains Mono,monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(p.tenants.length,p.pos.x,p.pos.y);
+    // Label
+    ctx.fillStyle=col;ctx.font='bold 10px Instrument Sans,sans-serif';ctx.textAlign='center';ctx.textBaseline='top';
+    ctx.fillText(p.pc,p.pos.x,p.pos.y+r+4);
+  });
+
+  // Legend
+  [{col:'#B83A20',lbl:'High Risk'},{col:'#A8601A',lbl:'Medium Risk'},{col:'#0D7A72',lbl:'Low Risk'}].forEach((l,i)=>{
+    ctx.fillStyle=l.col;ctx.beginPath();ctx.arc(W-180,30+i*22,7,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#3A302A';ctx.font='12px Instrument Sans,sans-serif';ctx.textAlign='left';ctx.textBaseline='middle';
+    ctx.fillText(l.lbl,W-165,30+i*22);
+  });
+
+  // Postcode cards
+  const grid=document.getElementById('map-postcode-grid');
+  if(grid) grid.innerHTML=pcData.sort((a,b)=>b.highCount-a.highCount).map(p=>{
+    const hasRed=p.tenants.some(t=>t.band==='RED');
+    const hasAmber=p.tenants.some(t=>t.band==='AMBER');
+    const cardCls=hasRed?'mpc-rust':hasAmber?'mpc-gold':'mpc-teal';
+    return`<div class="map-postcode-card ${cardCls}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div style="font-family:var(--fontM);font-size:18px;font-weight:700;color:var(--ink)">${p.pc}</div>
+        <div style="text-align:right"><div style="font-family:var(--fontM);font-size:13px;font-weight:700;color:${hasRed?'var(--rust)':'var(--inkD)'}">${p.highCount} HIGH</div><div style="font-size:9px;color:var(--inkD)">${p.tenants.length} tenants</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--inkC);margin-bottom:4px">${p.tenants.map(t=>`<span style="color:${bandColor(t.band)};font-weight:600">${t.name.split(' ')[0]}</span>`).join(' · ')}</div>
+      ${p.totalArrears?`<div style="font-family:var(--fontM);font-size:11px;color:var(--rust);margin-top:5px">−£${p.totalArrears.toLocaleString()} arrears</div>`:'<div style="font-size:10px;color:var(--sage);margin-top:5px">✓ No arrears</div>'}
+    </div>`;
+  }).join('');
+}
+
 window.onload=function(){
   renderDashboard();
   selectTenant(TENANTS[0].id);
